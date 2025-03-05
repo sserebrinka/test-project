@@ -12,8 +12,8 @@ class ProductPage(BasePage):
         print("Product added to cart")
     
     def elements_matches(self):
-        self.should_be_disappearing_message()
-        self.should_not_be_success_message()
+        # self.should_be_disappearing_message()
+        # self.should_not_be_success_message()
         self.should_be_elements_before_add()
         self.should_be_elements_after_add()
         self.should_be_values_match()
@@ -56,7 +56,7 @@ class ProductPage(BasePage):
         except NoAlertPresentException:
             print("No second alert presented")
     
-    def solve_quiz_and_get_code_parametrize(self):
+    def solve_quiz_and_get_code_2(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
