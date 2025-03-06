@@ -7,7 +7,10 @@ class BasePageLocators():
 
 
 class MainPageLocators():
-    pass
+    SEE_CART_LINK = (By.CSS_SELECTOR, ".btn-group a.btn-default")
+    CART_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
+    CART_IS_EMPTY_LINK = (By.CSS_SELECTOR, "#content_inner p a")
+    CART_ITEMS = (By.CSS_SELECTOR, ".basket-items")
 
 
 class LoginPageLocators():
