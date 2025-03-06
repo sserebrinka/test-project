@@ -57,4 +57,6 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, link_product)
     page.open()
-    pass
+    page.go_to_cart()
+    page.should_be_no_items_in_the_cart()
+    page.should_be_text_stating_cart_is_empty()
