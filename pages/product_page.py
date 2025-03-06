@@ -19,7 +19,7 @@ class ProductPage(BasePage):
         self.should_be_values_match()
     
     def should_be_button(self):
-        assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_TO_BASKET), 'Button "add to basker" is not presented'
+        assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_TO_BASKET), 'Button "add to basket" is not presented'
 
     def should_be_elements_before_add(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "Product name is not presented"
