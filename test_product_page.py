@@ -4,8 +4,7 @@ from pages.login_page import LoginPage
 import pytest, faker
 
 
-link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-
+link_product = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 product_base_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
 urls = [f"{product_base_link}/?promo=offer{no}" for no in range(10)]
 
@@ -23,7 +22,7 @@ def test_guest_can_add_product_to_basket(browser, link):
 
 @pytest.mark.xfail(reason="This test is expected to fail", strict=False)
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-    page = ProductPage(browser, link)
+    page = ProductPage(browser, link_product)
     page.open()
     page.add_product_to_basket()
     page.solve_quiz_and_get_code()
@@ -31,13 +30,11 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
 
 @pytest.mark.xfail(reason="This test is expected to fail", strict=False)
 def test_message_disappeared_after_adding_product_to_basket(browser):
-    page = ProductPage(browser, link)
+    page = ProductPage(browser, link_product)
     page.open()
     page.add_product_to_basket()
     page.solve_quiz_and_get_code()
     page.should_be_disappearing_message()
-
-link_product = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 def test_guest_should_see_login_link_on_product_page(browser):
     page = ProductPage(browser, link_product)
@@ -63,7 +60,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
-        page = LoginPage(browser, link)
+        page = LoginPage(browser, link_product)
         page.open()
         page.go_to_login_page()
 
@@ -74,13 +71,13 @@ class TestUserAddToBasketFromProductPage():
         page.should_be_authorized_user()
 
     def test_user_cant_see_success_message(self, browser): 
-        page = ProductPage(browser, link)
+        page = ProductPage(browser, link_product)
         page.open()
         page.should_not_be_success_message()
     
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
-        page = ProductPage(browser, link)
+        page = ProductPage(browser, link_product)
         page.open()
         page.add_product_to_basket()
         page.solve_quiz_and_get_code()
